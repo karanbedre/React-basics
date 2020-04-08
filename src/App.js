@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import { CardList } from './components/card-list/card-list.component';
-
+import { SearchBox } from './components/search-box/search-box.component'
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      userArray: []
+      userArray: [],
+      searchField: ''
     }
   }
 
@@ -20,14 +21,22 @@ class App extends Component {
 
   }
 
+  handleChange = event =>{
+    this.setState({ searchField: event.target.value })
+  }
+
+  
   render() {
+    const { userArray, searchField } = this.state;
+
+    const filteredUserArray = userArray.filter(userList =>
+      userList.name.toLowerCase().includes(searchField.toLowerCase()));
+
     return (
       <div className="App">
-        <CardList>
-          {this.state.userArray.map(userName => (
-            <h1 key={userName.id}>{userName.name}</h1>
-          ))}
-        </CardList>
+        <h1>React Basics</h1>
+        <SearchBox placeholder={'Search Users'} handleChange={this.handleChange} />
+        <CardList users={filteredUserArray} />
       </div>
     );
   }

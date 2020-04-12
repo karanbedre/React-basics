@@ -1,9 +1,5 @@
-.App {
-  text-align: center;
-}
 
-h1 {
-  font-family: 'Bigelow Rules', cursive;
-  font-size: 70px !important;
-  color: #0004ff;
+
+body {
+  font-family: 'Open Sans Condensed';
 }
